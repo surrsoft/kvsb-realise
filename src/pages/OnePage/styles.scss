@@ -19,12 +19,24 @@
     outline: 1px solid red; // del+
     min-width: 300px;
     min-height: 200px;
-  }
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    padding: 8px;
 
-  .op_draggable {
-    padding-left: 8px;
-    &::before {
-      content: ':: '
+    & .op_draggable {
+      padding: 6px;
+      outline: 1px solid silver;
+
+      & .op_elem {
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
+}
+
+.op_btn_con {
+  display: flex;
+  justify-content: flex-end;
 }
