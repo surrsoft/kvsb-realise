@@ -20,4 +20,11 @@
     min-width: 300px;
     min-height: 200px;
   }
+
+  .op_draggable {
+    padding-left: 8px;
+    &::before {
+      content: ':: '
+    }
+  }
 }

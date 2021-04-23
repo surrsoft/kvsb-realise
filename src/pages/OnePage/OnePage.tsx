@@ -20,6 +20,8 @@ interface Props {
 
 }
 
+let index0 = 0;
+
 export default function OnePage(props: Props) {
   const [selFields, selFieldsSet] = useState([] as FieldNT[]);
 
@@ -72,8 +74,8 @@ export default function OnePage(props: Props) {
           <DroppableWrapper droppableId={DRGID.D2} className={'op_drop'}>
             {
               selFields.map((field, index) => {
-                return <DraggableItemWrapper key={index} draggableId={`${DRGID.D2}-${index}`} index={index}>
-                  <FieldTypeUI field={field}/>
+                return <DraggableItemWrapper key={index0++} draggableId={`${DRGID.D2}-${index}`} index={index} className={'op_draggable'}>
+                  {Fields.inputByField(field)}
                 </DraggableItemWrapper>
               })
             }
