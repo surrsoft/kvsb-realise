@@ -1,10 +1,10 @@
 import { FieldNT, Fields } from '../../blogic/misc';
 import FieldTypeUI from '../../components/FieldTypeUI';
 import SmGapH from '../../components/simple/SmGapH';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext } from 'react-beautiful-dnd';
 import './styles.scss'
 import { useState } from 'react';
-import { stdArrElemsSwap } from '../../components/simple/utils';
+import { stdArrElemMove } from '../../components/simple/utils';
 import DraggableItemWrapper from '../../components/drag_and_drop/DraggableItemWrapper';
 import DroppableWrapper from '../../components/drag_and_drop/DroppableWrapper';
 
@@ -21,7 +21,7 @@ interface Props {
 }
 
 export default function OnePage(props: Props) {
-  const [selFields, selFieldsSet] = useState([{nameTech: 'test1', nameVisual: 'test1'}] as FieldNT[]);
+  const [selFields, selFieldsSet] = useState([] as FieldNT[]);
 
   const onDragEndHandler = (result: any) => {
     console.log(`!!-!!-!! -> :::::::::::::: onDragEnd() {210423113201}:${Date.now()}`); // del+
@@ -48,7 +48,7 @@ export default function OnePage(props: Props) {
       }
     } else if (dDid === DRGID.D2) {
       const arr0 = [...selFields]
-      stdArrElemsSwap(arr0, sIndex, dIndex)
+      stdArrElemMove(arr0, sIndex, dIndex)
       selFieldsSet(arr0)
     }
 
@@ -69,7 +69,7 @@ export default function OnePage(props: Props) {
               })
             }
           </DroppableWrapper>
-          <DroppableWrapper droppableId={DRGID.D2}>
+          <DroppableWrapper droppableId={DRGID.D2} className={'op_drop'}>
             {
               selFields.map((field, index) => {
                 return <DraggableItemWrapper key={index} draggableId={`${DRGID.D2}-${index}`} index={index}>

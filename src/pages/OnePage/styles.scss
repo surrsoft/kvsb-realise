@@ -15,4 +15,9 @@
     padding: 8px;
   }
 
+  .op_drop {
+    outline: 1px solid red; // del+
+    min-width: 300px;
+    min-height: 200px;
+  }
 }
