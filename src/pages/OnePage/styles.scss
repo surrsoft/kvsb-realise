@@ -1,0 +1,18 @@
+.op_title {
+  font-size: 24px;
+  color: red;
+}
+
+.op_con1 {
+  display: flex;
+  outline: 1px solid silver;
+
+  .op_fields {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    outline: 1px solid black;
+    padding: 8px;
+  }
+
+}
