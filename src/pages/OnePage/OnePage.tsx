@@ -5,8 +5,10 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import './styles.scss'
 import { useState } from 'react';
 import { stdArrElemsSwap } from '../../components/simple/utils';
+import DraggableItemWrapper from '../../components/drag_and_drop/DraggableItemWrapper';
+import DroppableWrapper from '../../components/drag_and_drop/DroppableWrapper';
 
-enum EnDropppableId {
+enum DRGID {
   D1 = 'd1',
   D2 = 'd2'
 }
@@ -40,11 +42,11 @@ export default function OnePage(props: Props) {
     const sField = Fields.values()[sIndex]
 
     if (sDid !== dDid) {
-      if (dDid === EnDropppableId.D2) {
+      if (dDid === DRGID.D2) {
         selFields.splice(dIndex, 0, sField)
         selFieldsSet([...selFields])
       }
-    } else if (dDid === EnDropppableId.D2) {
+    } else if (dDid === DRGID.D2) {
       const arr0 = [...selFields]
       stdArrElemsSwap(arr0, sIndex, dIndex)
       selFieldsSet(arr0)
@@ -58,58 +60,24 @@ export default function OnePage(props: Props) {
       <SmGapH h={16}/>
       <div className={'op_con1'}>
         <DragDropContext onDragEnd={onDragEndHandler}>
-          <Droppable droppableId={EnDropppableId.D1}>
-            {(provided, snapshot) => (
-              <div
-                ref={provided.innerRef}
-                style={{backgroundColor: snapshot.isDraggingOver ? colorOver : colorMain}}
-                {...provided.droppableProps}
-              >
-                {provided.placeholder}
-                {
-                  Fields.values().map((field, index) => {
-                    return <Draggable key={index} draggableId={`${EnDropppableId.D1}-${index}`} index={index}>
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <FieldTypeUI field={field}/>
-                        </div>
-                      )}
-                    </Draggable>
-                  })
-                }
-              </div>
-            )}
-          </Droppable>
-          <Droppable droppableId={EnDropppableId.D2}>
-            {(provided, snapshot) => (
-              <div
-                ref={provided.innerRef}
-                style={{backgroundColor: snapshot.isDraggingOver ? colorOver : colorMain}}
-                {...provided.droppableProps}
-              >
-                {provided.placeholder}
-                {
-                  selFields.map((field, index) => {
-                    return <Draggable key={index} draggableId={`${EnDropppableId.D2}-${index}`} index={index}>
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <FieldTypeUI field={field}/>
-                        </div>
-                      )}
-                    </Draggable>
-                  })
-                }
-              </div>
-            )}
-          </Droppable>
+          <DroppableWrapper droppableId={DRGID.D1}>
+            {
+              Fields.values().map((field, index) => {
+                return <DraggableItemWrapper key={index} draggableId={`${DRGID.D1}-${index}`} index={index}>
+                  <FieldTypeUI field={field}/>
+                </DraggableItemWrapper>
+              })
+            }
+          </DroppableWrapper>
+          <DroppableWrapper droppableId={DRGID.D2}>
+            {
+              selFields.map((field, index) => {
+                return <DraggableItemWrapper key={index} draggableId={`${DRGID.D2}-${index}`} index={index}>
+                  <FieldTypeUI field={field}/>
+                </DraggableItemWrapper>
+              })
+            }
+          </DroppableWrapper>
         </DragDropContext>
       </div>
     </div>

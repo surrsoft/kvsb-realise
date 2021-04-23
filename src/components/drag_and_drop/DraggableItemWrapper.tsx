@@ -5,7 +5,10 @@ export default (props: any) =>
   <Draggable draggableId={props.draggableId} index={props.index}>
     {(provided: any) => (
       <div className={props.className}
-           ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+           ref={provided.innerRef}
+           {...provided.draggableProps}
+           {...provided.dragHandleProps}
+      >
         {props.children}
       </div>
     )}
