@@ -6,6 +6,10 @@ export interface FieldNT {
 export enum TN {
   TEXT_FIELD = 'TextField',
   DATE = 'Date',
+  DATETIME_LOCAL = 'DateTimeLocal',
+  DATE_MONTH = 'DateMonth',
+  DATE_WEEK = 'DateWeek',
+  DATE_TIME = 'DateTime',
   EMAIL = 'Email',
   TEXT_AREA = 'TextArea',
   COLOR = 'Color',
@@ -18,6 +22,10 @@ export enum TN {
   IMAGE = 'Image',
   FILE = 'File',
   HIDDEN = 'Hidden',
+  RESET = 'Reset',
+  SEARCH = 'Search',
+  SUBMIT = 'Submit',
+  BUTTON = 'Button',
 }
 
 export class Fields {
@@ -25,6 +33,10 @@ export class Fields {
     return [
       {nameTech: TN.TEXT_FIELD, nameVisual: 'Text Field'} as FieldNT,
       {nameTech: TN.DATE, nameVisual: 'Date'} as FieldNT,
+      {nameTech: TN.DATETIME_LOCAL, nameVisual: 'Date & time local'} as FieldNT,
+      {nameTech: TN.DATE_MONTH, nameVisual: 'Month'} as FieldNT,
+      {nameTech: TN.DATE_WEEK, nameVisual: 'Week'} as FieldNT,
+      {nameTech: TN.DATE_TIME, nameVisual: 'Time'} as FieldNT,
       {nameTech: TN.EMAIL, nameVisual: 'Email'} as FieldNT,
       {nameTech: TN.PASSWORD, nameVisual: 'Password'} as FieldNT,
       {nameTech: TN.TEL, nameVisual: 'Tel'} as FieldNT,
@@ -37,6 +49,10 @@ export class Fields {
       {nameTech: TN.IMAGE, nameVisual: 'Image'} as FieldNT,
       {nameTech: TN.FILE, nameVisual: 'File'} as FieldNT,
       {nameTech: TN.HIDDEN, nameVisual: 'Hidden'} as FieldNT,
+      {nameTech: TN.RESET, nameVisual: 'Reset'} as FieldNT,
+      {nameTech: TN.SEARCH, nameVisual: 'Search'} as FieldNT,
+      {nameTech: TN.SUBMIT, nameVisual: 'Submit'} as FieldNT,
+      {nameTech: TN.BUTTON, nameVisual: 'Button'} as FieldNT,
     ]
   }
 
@@ -46,6 +62,14 @@ export class Fields {
         return <input type={'text'}/>
       case TN.DATE:
         return <input type={'date'}/>
+      case TN.DATETIME_LOCAL:
+        return <input type={'datetime-local'}/>
+      case TN.DATE_MONTH:
+        return <input type={'month'}/>
+      case TN.DATE_WEEK:
+        return <input type={'week'}/>
+      case TN.DATE_TIME:
+        return <input type={'time'}/>
       case TN.EMAIL:
         return <input type={'email'}/>
       case TN.TEXT_AREA:
@@ -70,6 +94,14 @@ export class Fields {
         return <input type={'file'}/>
       case TN.HIDDEN:
         return <input type={'hidden'}/>
+      case TN.RESET:
+        return <input type={'reset'}/>
+      case TN.SEARCH:
+        return <input type={'search'}/>
+      case TN.SUBMIT:
+        return <input type={'submit'}/>
+      case TN.BUTTON:
+        return <input type={'button'}/>
     }
     return <input type={'text'}/>
   }
